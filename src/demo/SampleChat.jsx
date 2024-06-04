@@ -82,7 +82,7 @@ export default function SampleChat() {
   }
   useEffect(() => {
       init(userId);
-  }, [userId,allow]);
+  }, [userId,allow,init]);
 
   const changeLanguage = (lng) => {
     setCurrentLng(lng);
