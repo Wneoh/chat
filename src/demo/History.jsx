@@ -8,7 +8,7 @@ function History() {
     const { userId } = useParams();
     const [isAdmin , setIsAdmin] = useState(false);
 
-    const users = ['test-4584','test-8433','test-437','test-5746','test-7068'];
+    const users = ['test-4584','test-8433','test-437','test-5746','test-7068','test-euro','test-euro1'];
     const [selectedUser, setSelectedUser] = useState(null);
     const [historyStats, setHistoryStats] = useState([]);
     const domain = "console.tim.qq.com";

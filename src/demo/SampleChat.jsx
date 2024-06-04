@@ -53,7 +53,7 @@ export default function SampleChat() {
     const init = async (userId) => {
       //const userID = `test-${Math.ceil(Math.random() * 10000)}`;
       const userID = userId;
-      const allowLists = ['administrator','test-4584','test-8433','test-437','test-5746','test-7068'];
+      const allowLists = ['administrator','test-4584','test-8433','test-437','test-5746','test-7068','test-euro','test-euro1'];
       if (userID && allowLists.includes(userID)) {
   
         if (userID === "administrator") setIsAdmin(true);      
