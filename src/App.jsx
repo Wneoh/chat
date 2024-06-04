@@ -10,8 +10,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/">
-          <Route index element={<SampleChat />} />
-          <Route path="/user/:userId" element={<SampleChat />} />
+          <Route path="/:userId" element={<SampleChat />} />
           <Route path="/history/:userId" element={<History />} />
           <Route path="*" element={<NoPage />} />
         </Route>
