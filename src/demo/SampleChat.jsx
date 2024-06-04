@@ -24,7 +24,6 @@ export default function SampleChat() {
   const [chat, setChat] = useState(null);
   const { userId } = useParams();
   const [allow, setAllow] = useState(false);
-  const allowLists = ['administrator','test-4584','test-8433','test-437','test-5746','test-7068'];
 
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentLng, setCurrentLng] = useState({
@@ -49,40 +48,42 @@ export default function SampleChat() {
     navigate(`/history/${userId}`);
   };
 
-  const init = async (userId) => {
-    //const userID = `test-${Math.ceil(Math.random() * 10000)}`;
-    const userID = userId;
-
-    if (userID && allowLists.includes(userID)) {
-
-      if (userID === "administrator") setIsAdmin(true);      
-      const sdkAppId = genTestUserSig(userID).SDKAppID;
-      const userSigId = genTestUserSig(userID).userSig;
-      
-      try {
-        const loginInfo = {
-          SDKAppID: sdkAppId,
-          userID,
-          userSig: userSigId,
-          useUploadPlugin: true,
-        };
-        TUILogin.login(loginInfo);
-        const { chat } = TUILogin.getContext();
-        chat.on(TencentCloudChat.EVENT.SDK_READY, () => {
-          console.log('data',TUILogin.EVENT.SDK_READY);
-          setChat(chat);
-          setAllow(true); 
-        });
-       
-      } catch (error) {
-        console.log(error);
-        console.error('Login failed:', error);
+  useEffect(() => {
+    
+    const init = async (userId) => {
+      //const userID = `test-${Math.ceil(Math.random() * 10000)}`;
+      const userID = userId;
+      const allowLists = ['administrator','test-4584','test-8433','test-437','test-5746','test-7068'];
+      if (userID && allowLists.includes(userID)) {
+  
+        if (userID === "administrator") setIsAdmin(true);      
+        const sdkAppId = genTestUserSig(userID).SDKAppID;
+        const userSigId = genTestUserSig(userID).userSig;
+        
+        try {
+          const loginInfo = {
+            SDKAppID: sdkAppId,
+            userID,
+            userSig: userSigId,
+            useUploadPlugin: true,
+          };
+          TUILogin.login(loginInfo);
+          const { chat } = TUILogin.getContext();
+          chat.on(TencentCloudChat.EVENT.SDK_READY, () => {
+            console.log('data',TUILogin.EVENT.SDK_READY);
+            setChat(chat);
+            setAllow(true); 
+          });
+         
+        } catch (error) {
+          console.log(error);
+          console.error('Login failed:', error);
+        }
       }
     }
-  }
-  useEffect(() => {
+
       init(userId);
-  }, [userId,allow,init]);
+  }, [userId,allow]);
 
   const changeLanguage = (lng) => {
     setCurrentLng(lng);

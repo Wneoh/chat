@@ -8,8 +8,7 @@ function History() {
     const { userId } = useParams();
     const [isAdmin , setIsAdmin] = useState(false);
 
-    const allowLists = ['test-4584','test-8433','test-437','test-5746','test-7068'];
-    const [users,setUsers] = useState(allowLists);
+    const users = ['test-4584','test-8433','test-437','test-5746','test-7068'];
     const [selectedUser, setSelectedUser] = useState(null);
     const [historyStats, setHistoryStats] = useState([]);
     const domain = "console.tim.qq.com";
@@ -35,7 +34,7 @@ function History() {
     }
     
     useEffect(() => {
-        if (userId == "administrator") {
+        if (userId === "administrator") {
             setIsAdmin(true);
         }
     }, [userId])
